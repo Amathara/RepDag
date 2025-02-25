@@ -1,4 +1,4 @@
-﻿namespace Opgave_5
+﻿namespace Opgave_7
 {
     internal class Program
     {
@@ -28,6 +28,7 @@
                 Console.WriteLine("Number is positive");
             }
 
+            Console.ReadLine();
         }
     }
 }
