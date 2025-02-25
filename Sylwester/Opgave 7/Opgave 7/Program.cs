@@ -1,4 +1,4 @@
-﻿namespace Opgave_5
+﻿namespace Opgave_7
 {
     internal class Program
     {
