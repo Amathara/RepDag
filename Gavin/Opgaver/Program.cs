@@ -1,4 +1,4 @@
-﻿namespace Opgave_1
+﻿namespace Opgaver
 {
     internal class Program
     {
