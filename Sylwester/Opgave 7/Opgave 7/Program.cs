@@ -28,6 +28,7 @@
                 Console.WriteLine("Number is positive");
             }
 
+            Console.ReadLine();
         }
     }
 }
