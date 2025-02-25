@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opgavesæt", "opgavesæt.csproj", "{176694A7-D15E-44A0-8B8E-6C35240FCE2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{176694A7-D15E-44A0-8B8E-6C35240FCE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176694A7-D15E-44A0-8B8E-6C35240FCE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176694A7-D15E-44A0-8B8E-6C35240FCE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176694A7-D15E-44A0-8B8E-6C35240FCE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
