@@ -45,5 +45,8 @@ namespace CarApp
             return $"Wohooo, du kører en tur på 50 km!\nDin bil har nu kørt i alt {newDistance} km";
 
         }
+
+        
+
     }
 }
