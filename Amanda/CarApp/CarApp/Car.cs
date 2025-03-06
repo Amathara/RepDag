@@ -9,14 +9,14 @@ namespace CarApp
     // Adding "Car" class:
     internal class Car
     {
-        string _brand;
-        string _model;
-        int _year;
-        char _gear;
-        double _odometer;
-        string _fuelType;
-        bool _isEngineOn;
-        double _kmPerLiter;
+        private string _brand;
+        private string _model;
+        private int _year;
+        private char _gear;
+        private double _odometer;
+        private string _fuelType;
+        private bool _isEngineOn;
+        private double _kmPerLiter;
 
         //Constructor: (Models how we input the data later in our "Object")
         public Car(string brand,string model, int year, char gear, double odometer, string fuelType, bool isEngineOn, double kmPerLiter)
@@ -31,10 +31,19 @@ namespace CarApp
             _kmPerLiter = kmPerLiter;
                 
         }
-        // Method: Get car info.is WITHIN the class, so it has the info it needs. Method is made public so I can add info in my "object" later.
+        // Methode til at "printe" car info: Get car info.is WITHIN the class, so it has the info it needs. Method is made public so I can add info in my "object" later.
         public string GetCarInfo()
         {
             return $"Brand: {_brand}\n\nModel: {_model}\n\nYear: {_year}\n\nGear: {_gear}\n\nMilage: {_odometer} km\n\nFuel Type: {_fuelType}\n\nEngine is on: {_isEngineOn}\n\nCan drive: {_kmPerLiter} km per liter of fuel";
+        }
+
+        // Metode til at "køre" bilen:
+        public string Drive(double distance)
+        {
+            double newDistance = _odometer + distance;
+
+            return $"Wohooo, du kører en tur på 50 km!\nDin bil har nu kørt i alt {newDistance} km";
+
         }
     }
 }
