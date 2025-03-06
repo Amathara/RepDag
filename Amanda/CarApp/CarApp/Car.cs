@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarApp
 {
+    // Adding "Car" class:
     internal class Car
     {
         string _brand;
@@ -17,7 +18,7 @@ namespace CarApp
         bool _isEngineOn;
         double _kmPerLiter;
 
-        //Constructor:
+        //Constructor: (Models how we input the data later in our "Object")
         public Car(string brand,string model, int year, char gear, double odometer, string fuelType, bool isEngineOn, double kmPerLiter)
         {
             _brand = brand;
@@ -30,10 +31,10 @@ namespace CarApp
             _kmPerLiter = kmPerLiter;
                 
         }
-        // Method: Get car info.
+        // Method: Get car info.is WITHIN the class, so it has the info it needs. Method is made public so I can add info in my "object" later.
         public string GetCarInfo()
         {
-            return $"Brand: {_brand}\n\nModel: {_model}\n\nYear: {_year}\n\nGear: {_gear}\n\nMilage: {_odometer}\n\nFuel Type: {_fuelType}\n\n Engine is on: {_isEngineOn};\n\n Can drive: {_kmPerLiter} km per liter of fuel";
+            return $"Brand: {_brand}\n\nModel: {_model}\n\nYear: {_year}\n\nGear: {_gear}\n\nMilage: {_odometer} km\n\nFuel Type: {_fuelType}\n\nEngine is on: {_isEngineOn}\n\nCan drive: {_kmPerLiter} km per liter of fuel";
         }
     }
 }
