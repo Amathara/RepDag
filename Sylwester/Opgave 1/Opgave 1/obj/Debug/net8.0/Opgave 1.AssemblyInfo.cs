@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Opgave 1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdc25cd20802884d5e15eb4d2a401a9d65c4d507")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f805dd6a286cd6c4c50c4b4ca0f11573b40c9208")]
+>>>>>>> bf364ff48813423700e54178d57dbd98d75dbd39
 [assembly: System.Reflection.AssemblyProductAttribute("Opgave 1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Opgave 1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
