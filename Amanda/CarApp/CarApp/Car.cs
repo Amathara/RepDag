@@ -9,7 +9,7 @@ namespace CarApp
 
     internal class CarPark
     {
-        List <Car>
+        List <String>
     }
     // Adding "Car" class - To be able to make a car list
     internal class Car
@@ -22,7 +22,7 @@ namespace CarApp
             Electric,
             Hybrid
         }
-        // Lav til en metode ved at adde:
+        
 
         private string _brand;
         private string _model;
@@ -33,6 +33,7 @@ namespace CarApp
         private bool _isEngineOn;
         private double _kmPerLiter;
         public double fuelPrice;
+        private List<Trip> trips;
         //Constructor: (Models how we input the data later in our "Object")
         public Car(string brand, string model, int year, char gear, double odometer, string fuelTypeInput, bool isEngineOn, double kmPerLiter)
         {
@@ -45,6 +46,7 @@ namespace CarApp
             _isEngineOn = isEngineOn;
             _kmPerLiter = kmPerLiter;
             fuelPrice = GetFuelPrice(fuelType);
+            trips = new List<Trip>();
         }
         // Methode til at "printe" car info: Get car info.is WITHIN the class, so it has the info it needs. Method is made public so I can add info in my "object" later.
         public string GetCarInfo()
@@ -125,5 +127,20 @@ namespace CarApp
             Console.WriteLine("Desuden er din bils nye kilometerstand" + " " + newKiloStand + " " + "km");
 
         }
-    }
+        // Method to drive and log a trip
+        public void Drive(Trip newTrip)
+        {
+            trips.Add(newTrip);
+            _odometer += newTrip.Distance;
+        }
+
+        // Method to print all trips
+        public void PrintAllTrips()
+        {
+            foreach (var trip in trips)
+            {
+                trip.PrintTripDetails();
+                Console.WriteLine("-------------------------");
+            }
+        }
 }

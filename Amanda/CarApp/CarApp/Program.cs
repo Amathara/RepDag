@@ -17,7 +17,7 @@ namespace CarApp
             // Object!! Adding a specific car manually IN the code, not the console.
             Car baseCar = new Car("Toytoa", "Corolla", 2020, 'A', 2609, "Benzin", true, 30);
 
-
+           
 
             /*
             For at få info om "myCar"
