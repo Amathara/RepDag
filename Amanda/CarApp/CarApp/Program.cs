@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Transactions;
 
 namespace CarApp
 {
+    
+   
+    
     internal class Program
     {
 
-
+       
         static void Main(string[] args)
         {
             // Object!! Adding a specific car manually IN the code, not the console.
@@ -50,30 +54,30 @@ namespace CarApp
                 {
                     case 1:
                         tilføjBil();
-                        Console.WriteLine("\nTryk <Enter> for at komme tilbage til menuen.\n");
-                       
+                        
+
                         break;
                     case 2:
                         Console.WriteLine(baseCar.Drive(50));
-                        Console.WriteLine("\nTryk <Enter> for at komme tilbage til menuen.\n");
+                        
                         break;
                     case 3:
 
-                        beregnPris();
+                        baseCar.beregnPris();
                         break;
                     case 4:
                         Console.WriteLine("\nDenne option er under konstruktion.");
-                        Console.WriteLine("\nTryk <Enter> for at komme tilbage til menuen.\n");
+                        
                         //harViPalindrom(kiloStand);
                         break;
                     case 5:
 
                         Console.WriteLine(baseCar.GetCarInfo());
-                        Console.WriteLine("\nTryk <Enter> for at komme tilbage til menuen.\n");
+                        
                         break;
                     case 6:
                         Console.WriteLine("\nDenne option er under konstruktion.");
-                        Console.WriteLine("\nTryk <Enter> for at komme tilbage til menuen.\n");
+                        
                         //visAlleBilDetaljer();
                         break;
 
@@ -83,7 +87,11 @@ namespace CarApp
                         break;
 
                 }
-                Console.ReadLine();
+                if (running) // Indsæt streg inden svaret kommer ud:
+                {
+                    Console.WriteLine("\nTryk <Enter> for at komme tilbage til menuen.\n"); ;
+                }
+                    Console.ReadLine();
                 // Case 1: Tilføj en bil.
                 //Metode
                 void tilføjBil()
@@ -122,7 +130,7 @@ namespace CarApp
 
                     // Creating a new car object with the provided data
                     Car newCar = new Car(brand, model, year, gear, odometer, fuelType, isEngineOn, kmPerLiter);
-
+                    Console.WriteLine(newCar.fuelType);
                     // Adding the car to the list
                     carCollection.Add(newCar);
 
@@ -132,66 +140,14 @@ namespace CarApp
                 }
 
                 // Case 3: (Er ikke forbundet med car klassen endnu!!)
-                // Metode
-                void beregnPris()
-                    
-                {
-                    Console.WriteLine("For at kunne beregne prisen for din tur skal vi først bruge nogle oplysninger:");
-                    Console.WriteLine("Bruger bilen diesel eller benzin?");
-                    string fuelType = Console.ReadLine();
+               
 
-                    // Definerer fuelPrice
-                    double fuelPrice = 0;
-
-
-                    if (fuelType.ToLower() == "diesel")
-                    {
-                        fuelPrice = 12.29;
-                    }
-                    else if (fuelType.ToLower() == "benzin")
-                    {
-                        fuelPrice = 13.49;
-                    }
-                    else
-                    {
-                        fuelPrice = 13.49;
-                    }
-
-
-
-
-
-                    Console.WriteLine("Hvor mange kilometer kan den køre på literen?");
-
-
-                    double kmPerLiter = double.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Hvor mange kilometer har bilen kørt i alt?");
-                    int kiloStand = Convert.ToInt32(Console.ReadLine());
-
-                    Console.WriteLine("Tak for info :)");
-
-                    Console.WriteLine("NU kan vi regne!");
-
-                    Console.WriteLine("Hvor mange kilometer vil du køre i dag?");
-                    int distance = Convert.ToInt32(Console.ReadLine());
-
-                    double fuelNeeded = distance / kmPerLiter;
-                    double tripCost = fuelNeeded * fuelPrice;
-                    // Tre måder at gøre det på!
-                    //Console.WriteLine("Jamen så har du brug for" + " " + fuelNeeded + " " + "liter" + " " + fuelType + " " + "og turen vil koste dig" + " " + tripCost + " " + "kr");
-                    Console.WriteLine($"Jamen så har du brug for {fuelNeeded} liter {fuelType} og turen vil koste dig {tripCost} kr");
-                   // string carinfo = String.Format("Jamen så har du brug for {0} liter {1} og turen vil koste dig {2} kr.", fuelNeeded, fuelType, tripCost);
-                    //Console.WriteLine(carinfo);
-                    double newKiloStand = kiloStand + distance;
-
-
-                    Console.WriteLine("Desuden er din bils nye kilometerstand" + " " + newKiloStand + " " + "km"); 
-
-                }
+            
                 // Case 6:
                
+        
             }
         }
     }
 }
+
