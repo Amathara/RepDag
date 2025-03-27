@@ -4,208 +4,107 @@ namespace CarApp
 {
     internal class Program
     {
-   
-        static int distance = 1;
-        static bool menuRunning = true;
-        static string lineSeparator = new String('-', 30);
-        static double fuelPrice;
-        static Car myCar;
+        //Menu
+        static bool menuActive = true;
 
-        static void Main()
+        //Instantiating and initializing Car class into userCar
+        static Car userCar = new Car("Empty", "Empty", 0, 0, 0, 'A', Car.FuelType.Gasoline, false);
+
+        //Main menu
+        static void Main(string[] args)
         {
-            while (menuRunning)
+            while (menuActive)
             {
-                Console.WriteLine(lineSeparator);
-                Console.WriteLine(
-                    "1. Input Car Details \n" +
-                    "2. See Car Details \n" +
-                    "3. Drive \n" +
-                    "4. Calculate Trip Price \n" +
-                    "5. Show Previous Trips \n" +
-                    "6. Palindrome Test \n" +
-                    "7. Stop Program");
-                Console.WriteLine(lineSeparator);
+                Console.WriteLine("Choose an option:");
+                Console.WriteLine("1. Input Car Details");
+                Console.WriteLine("2. See Car Details");
+                Console.WriteLine("3. Drive");
+                Console.WriteLine("4. Show Previous Trips");
+                Console.WriteLine("5. Exit Program");
 
-                Console.WriteLine("\nSelect Function");
-                int menu = int.Parse(Console.ReadLine());
+                int menuChoice = int.Parse(Console.ReadLine());
 
-                switch (menu)
+                //Switch case for menu selection
+                switch (menuChoice)
                 {
-                    case 1: //Input Car Details
+                    case 1:
                         InputCarDetails();
                         break;
-                    case 2: //See Car Details
-                        if (myCar == null)
-                        {
-                            Console.WriteLine("Input Car Details First");
-                        }
-                        else
-                        {
-                            PrintCarDetails();
-                        }
+                    case 2:
+                        PrintCarDetails();
                         break;
-                    case 3: //Drive
-                        if (myCar == null)
-                        {
-                            Console.WriteLine("Input Car Details First");
-                        }
-                        else
-                        {
-                            myCar.EngineStatus();
-                            if (myCar.IsEngineOn)
-                            {
-                                Console.WriteLine("Enter Distance to drive: ");
-                                distance = int.Parse(Console.ReadLine());
 
-                                DateTime tripDate = DateTime.Today;
-                                DateTime startTime = DateTime.Now;
-                                myCar.Drive(distance);
-                                DateTime endTime = DateTime.Now;
-                                
-                                
 
-                                Trip trip = new Trip(distance, startTime, endTime, tripDate);
-                                myCar.AddTrip(trip);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Car Engine Is Off!");
-                            }
-                        }
-                        break;
-                    case 4: //Calculate Trip Price
-                        if (myCar == null)
-                        {
-                            Console.WriteLine("Input Car Details First");
-                        }
-                        else
-                        {
-                            double fuelPrice = CheckFuelPrice();             
-                            
-                            Trip lastTrip = myCar.Trips[myCar.Trips.Count - 1];
-
-                            double tripCost = lastTrip.CalculateTripPrice(myCar, fuelPrice);
-                            Console.WriteLine($"Trip cost is: {tripCost}DKK");
-                        }
-                        break;
-                    case 5: //Show Previous Trips
-                        if (myCar == null)
-                        {
-                            Console.WriteLine("Input Car Details First");
-                        }
-                        else
-                        {
-                            myCar.ShowPreviousTrips();
-                        }
-                        break;
-                    case 6: //Palindrome Test
-                        IsPalindrome();
-                        break;
-                    case 7: //Stop Program
-                        menuRunning = false;
-                        break;
 
                 }
             }
         }
 
+        //Method for inputting car details
         static void InputCarDetails()
         {
-            //Getting user input for variables.
+            //Get user input and assign to instantiated Car
             Console.WriteLine("Enter Brand: ");
-            string brand = Console.ReadLine();
+            userCar.Brand = Console.ReadLine().ToString();
 
             Console.WriteLine("Enter Model: ");
-            string model = Console.ReadLine();
-
-            Console.WriteLine("Enter Fuel Type (Benzin, Diesel, Electric or Hybrid): ");
-            string fuelInput = Console.ReadLine();
-
-            FuelType fuelType;
-
-            switch (fuelInput.ToLower())
-            {
-                case "benzin":
-                    fuelType = FuelType.Benzin;
-                    break;
-                case "diesel":
-                    fuelType = FuelType.Diesel;
-                    break;
-                case "electric":
-                    fuelType = FuelType.Electric;
-                    break;
-                case "hybrid":
-                    fuelType = FuelType.Hybrid;
-                    break;
-                default:
-                    fuelType = FuelType.Benzin;
-                    break;
-            }
+            userCar.Model = Console.ReadLine().ToString();
 
             Console.WriteLine("Enter Year: ");
-            int year = int.Parse(Console.ReadLine());
+            userCar.Year = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter Gear Type (Auto or Manuel): ");
-            char gearType = Console.ReadLine()[0];
+            Console.WriteLine("Enter Mileage: ");
+            userCar.Mileage = double.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter Km/L: ");
-            double kmPerL = double.Parse(Console.ReadLine());
+            userCar.KmPerL = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter Mileage");
-            int mileage = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Gear Type (M or A): ");
+            userCar.GearType = char.Parse(Console.ReadLine());
 
-            //Creating Car object
-            myCar = new Car(brand, model, fuelType, year, mileage, gearType, kmPerL);
+            Console.WriteLine("Enter Fuel Type (Gasoline, Diesel, Electric, Hybrid): ");
+            string fuelInput = Console.ReadLine().ToLower();
 
-        }            
+            //Check fuelInput strings index 0, and use that for switch case
+            char fuelChar = fuelInput[0];
 
-        static bool IsPalindrome()
-        {
-            string odometer = myCar.Mileage.ToString();
-            int length = odometer.Length;
-
-            for (int i = 0; i < length / 2; i++)
+            switch (fuelChar)
             {
-                if (odometer[i] != odometer[length - 1 - i])
-                {
-                    Console.WriteLine($"Mileage {myCar.Mileage} isn't a Palindrome");
-                    return false;
-                }
-            }
-            Console.WriteLine($"Mileage {myCar.Mileage} is a Palindrome");
-            return true;
-        }
-
-        static double CheckFuelPrice()
-        {
-            switch (myCar.FuelType)
-            {
-                case FuelType.Benzin:
-                    return 13.49;
-                case FuelType.Diesel:
-                    return 10.00;
-                case FuelType.Electric:
-                    return 5.00;
-                case FuelType.Hybrid:
-                    return 7.00;
+                case 'g':
+                    userCar.Fuel = Car.FuelType.Gasoline;
+                    break;
+                case 'd':
+                    userCar.Fuel = Car.FuelType.Diesel;
+                    break;
+                case 'e':
+                    userCar.Fuel = Car.FuelType.Electric;
+                    break;
+                case 'h':
+                    userCar.Fuel = Car.FuelType.Hybrid;
+                    break;
                 default:
-                    return 13.49;
+                    Console.WriteLine("Input Invalid. Defaulting to Gasoline");
+                    userCar.Fuel = Car.FuelType.Gasoline;
+                    break;
             }
+
+            //Engine off by default
+            userCar.IsEngineOn = false;
+
+            Console.WriteLine("Car Created");
         }
 
+        //Method for printing userCar info
         static void PrintCarDetails()
         {
-            Console.WriteLine(lineSeparator);
-            Console.WriteLine(
-                $"Brand: {myCar.Brand} \n" +
-                $"Model: {myCar.Model} \n" +
-                $"Fuel Type: {myCar.FuelType} \n" +
-                $"Year: {myCar.Year} \n" +
-                $"Gear Type: {myCar.GearType} \n" +
-                $"Km/L: {myCar.KmPerLiter} \n" +
-                $"Mileage: {myCar.Mileage}");
-            Console.WriteLine(lineSeparator);
-
+            Console.WriteLine("Car Details:");
+            Console.WriteLine($"Brand : {userCar.Brand}");
+            Console.WriteLine($"Model : {userCar.Model}");
+            Console.WriteLine($"Year : {userCar.Year}");
+            Console.WriteLine($"Mileage : {userCar.Mileage}");
+            Console.WriteLine($"Km/L : {userCar.KmPerL}");
+            Console.WriteLine($"Gear Type : {userCar.GearType}");
+            Console.WriteLine($"Fuel Type : {userCar.Fuel}");
         }
-    }        
+    }
 }
