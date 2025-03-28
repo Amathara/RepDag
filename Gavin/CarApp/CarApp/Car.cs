@@ -20,6 +20,7 @@ public class Car
         Hybrid
     }
     public FuelType Fuel { get; set; }
+    public List<Trip> tripList { get; set; } = new List<Trip>();
 
     //Constructor
     public Car(string brand, string model, int year, double mileage, double kmPerL, char gearType, FuelType fuel, bool isEngineOn)
@@ -40,12 +41,26 @@ public class Car
     {
         if (IsEngineOn == true && distance > 0)
         {
+            //Updating mileage
             Mileage += distance;
-            Console.WriteLine($"You drove {distance}. New Mileage is: {Mileage}");
+            
+            //Creating new trip based on distance and time
+            Trip newTrip = new Trip(distance, DateTime.Now);
+
+            //Adding new trip to list of trips
+            tripList.Add(newTrip);
+
+            //Calculate fuel consumption
+            double fuelUsed = newTrip.FuelConsumption(KmPerL);
+
+            //Print trip info
+            Console.WriteLine($"You drove {distance}");
+            Console.WriteLine($"New Mileage is: {Mileage}");
+            Console.WriteLine($"Fuel Used: {fuelUsed}");
         }
         else if (IsEngineOn == false)
         {
-            Console.WriteLine("Engine is turned off. Turn on Engine? (Yes or No)");
+            Console.WriteLine("Engine is turned off");
             EngineStatus();
         }
     }
@@ -65,6 +80,8 @@ public class Car
         {
             Console.WriteLine("Engine is off");
         }
+
+        
     }
 }
 

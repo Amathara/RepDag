@@ -33,9 +33,18 @@ namespace CarApp
                     case 2:
                         PrintCarDetails();
                         break;
-
-
-
+                    case 3:
+                        userCar.EngineStatus();
+                        Console.WriteLine("Input distance to drive: ");
+                        double distance = double.Parse(Console.ReadLine());
+                        userCar.Drive(distance);
+                        break;
+                    case 4:
+                        PrintPreviousTrips();
+                        break;
+                    case 5:
+                        menuActive = false;
+                        break;
                 }
             }
         }
@@ -105,6 +114,17 @@ namespace CarApp
             Console.WriteLine($"Km/L : {userCar.KmPerL}");
             Console.WriteLine($"Gear Type : {userCar.GearType}");
             Console.WriteLine($"Fuel Type : {userCar.Fuel}");
+        }
+
+        //Method for print previous trips
+        static void PrintPreviousTrips()
+        {
+            foreach(Trip trip in userCar.tripList)
+            {
+                Console.WriteLine($"Distance: {trip.Distance}");
+                Console.WriteLine($"Date & Time: {trip.Date}");
+                Console.WriteLine($"Fuel Consumed: {trip.FuelUsed}");
+            }
         }
     }
 }
